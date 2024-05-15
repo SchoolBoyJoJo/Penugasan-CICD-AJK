@@ -1,0 +1,25 @@
+services:
+
+  shaniz696969:
+    container_name: tugas_container
+    build: .
+    volumes:
+      - ./tamiyochi-laravel:/var/www/html
+    ports:
+      - 8080:80
+    networks:
+      - lana-net
+  
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pbkk
+    ports:
+    - 3306:3306
+    networks:
+    - lana-net
+
+networks:
+  lana-net:
+    driver: bridge
