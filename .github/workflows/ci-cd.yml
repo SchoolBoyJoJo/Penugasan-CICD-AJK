@@ -27,9 +27,9 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: ${{ secrets.PORT }}
             script: |
-                if [ ! -d "/home/ubuntu/cicd" ]; then
+              if [ ! -d "/home/ubuntu/cicd" ]; then
                 git clone https://github.com/SchoolBoyJoJo/Penugasan-CICD-AJK.git /home/ubuntu/cicd
-                fi
+              fi
               cd /home/ubuntu/cicd  # Navigate to the deployment directory
               git pull origin main  # Pull the latest changes from the main branch
               docker-compose down  # Stop and remove existing containers
