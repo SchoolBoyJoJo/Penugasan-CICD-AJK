@@ -29,6 +29,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Copy file aplikasi
 COPY ./tamiyochi-laravel /var/www/html
 
+# Copy .env.example to .env
+RUN cp .env.example .env
+
 # Create necessary directories
 RUN mkdir -pv storage/framework/views storage/app storage/framework/sessions storage/framework/cache bootstrap/cache
 
