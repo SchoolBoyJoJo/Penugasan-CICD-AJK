@@ -17,14 +17,14 @@ RUN apt-get update -y && apt-get install -y \
     libpng-dev \
     curl gnupg
 
-# Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
 # PHP Extension
 RUN docker-php-ext-install gettext intl pdo_mysql gd
 
 RUN docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Copy file aplikasi
 COPY ./tamiyochi-laravel /var/www/html
@@ -44,7 +44,7 @@ RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && apt-get update && apt-get install -y yarn
 
 # Run additional commands
-RUN composer install --working-dir=/var/www/html
+RUN composer install 
 
 RUN chmod o+w ./storage/ -R
 
