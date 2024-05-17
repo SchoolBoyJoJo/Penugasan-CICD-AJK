@@ -50,5 +50,5 @@ jobs:
           key: ${{ secrets.SSHKEY }}
           port: ${{ secrets.PORT }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/penugasan_cicd:latest
-            docker compose up --force-recreate -d
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/penugasan_cicd:latest
+            sudo docker compose up --force-recreate -d
