@@ -1,0 +1,3 @@
+[submodule "tamiyochi-laravel"]
+	path = tamiyochi-laravel
+	url = https://github.com/mvinorian/tamiyochi-laravel.git
