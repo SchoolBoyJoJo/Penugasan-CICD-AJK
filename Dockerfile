@@ -44,7 +44,7 @@ RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && apt-get update && apt-get install -y yarn
 
 # Run additional commands
-RUN composer install
+RUN composer install --working-dir=/var/www/html
 
 RUN chmod o+w ./storage/ -R
 
