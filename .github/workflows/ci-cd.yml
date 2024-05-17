@@ -52,3 +52,6 @@ jobs:
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/penugasan_cicd:latest
             sudo docker compose up --force-recreate -d
+            sudo docker exec -i tugas_container /bin/sh -c "php artisan migrate --force"
+            sudo docker exec -i tugas_container /bin/sh -c "php artisan db:seed --force"
+

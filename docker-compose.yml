@@ -2,7 +2,7 @@ services:
 
   shaniz696969:
     container_name: tugas_container
-    build: .
+    image: schoolboyjojo/penugasan_cicd
     volumes:
       - ./tamiyochi-laravel:/var/www/html
     ports:
