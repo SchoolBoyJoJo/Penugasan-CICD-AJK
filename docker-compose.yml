@@ -2,9 +2,9 @@ services:
 
   shaniz696969:
     container_name: tugas_container
-    image: schoolboyjojo/penugasan_cicd
+    image: schoolboyjojo/penugasan_cicd:latest
     volumes:
-      - ./tamiyochi-laravel:/var/www/html
+      - .:/var/www/html
     ports:
       - 8080:80
     networks:
