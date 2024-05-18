@@ -33,14 +33,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Copy docker-compose.yml to remote server
+      - name: Copy mandatory file
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSHKEY }}
           port: ${{ secrets.PORT }}
-          source: "./docker-compose.yml"
+          source: "./docker-compose.yml, ./tamiyochi-laravel, ./Dockerfile"
           target: "."
       - name: Execute remote SSH commands using private key
         uses: appleboy/ssh-action@v1.0.3
@@ -50,7 +50,9 @@ jobs:
           key: ${{ secrets.SSHKEY }}
           port: ${{ secrets.PORT }}
           script: |
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/penugasan_cicd:latest
             sudo docker compose down
-            sudo docker compose up --force-recreate -d
+            sudo docker compose up -d
+            sudo docker exec tugas_container bash -c "cp .env.example .env"
+            sudo docker exec tugas_container bash -c "php artisan migrate"
+            sudo docker exec tugas_container bash -c "php artisan db:seed"
 
