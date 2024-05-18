@@ -53,6 +53,12 @@ jobs:
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/penugasan_cicd:latest
             sudo docker compose down
             sudo docker compose up --force-recreate -d
+            sudo docker exec tugas_container bash -c "composer install"
+            sudo docker exec tugas_container bash -c "cp .env.example .env"
+            sudo docker exec tugas_container bash -c "yarn"
+            sudo docker exec tugas_container bash -c "php artisan key:generate"
             sudo docker exec tugas_container bash -c "php artisan migrate --force"
             sudo docker exec tugas_container bash -c "php artisan db:seed --force"
+            sudo docker exec tugas_container bash -c "php artisan storage:link"
+            sudo docker exec tugas_container bash -c "yarn build"
 
