@@ -40,7 +40,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSHKEY }}
           port: ${{ secrets.PORT }}
-          source: "./docker-compose.yml"
+          source: "./docker-compose.yml, ./tamiyochi-laravel"
           target: "."
       - name: Execute remote SSH commands using private key
         uses: appleboy/ssh-action@v1.0.3
