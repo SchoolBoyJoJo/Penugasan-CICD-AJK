@@ -41,7 +41,7 @@ jobs:
       uses: actions/checkout@v4
     - 
       name: Copy docker-compose.yml to remote server
-      uses: appleboy/scp-action@v1.8
+      uses: appleboy/scp-action@v0.1.7
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
@@ -51,7 +51,7 @@ jobs:
         target: "."
     -
       name: executing remote ssh commands using private key
-      uses: appleboy/ssh-action@v1.8
+      uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
